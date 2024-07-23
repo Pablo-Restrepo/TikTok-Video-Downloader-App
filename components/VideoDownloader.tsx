@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { downloadVideo } from '@/api/downloadtiktokvid';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedInput } from '@/components/ThemedInput';
@@ -36,7 +36,13 @@ const VideoDownloader: React.FC = () => {
                 placeholder="Enter the TikTok video URL"
                 style={styles.input}
             />
-            <Button title="Download Video" onPress={handleDownload} disabled={loading} />
+            <TouchableOpacity
+                style={[styles.button, loading && styles.buttonDisabled]}
+                onPress={handleDownload}
+                disabled={loading}
+            >
+                <ThemedText type="button" style={styles.textCenter}>Download Video</ThemedText>
+            </TouchableOpacity>
             <View style={styles.messageContainer}>
                 {loading ? (
                     <ActivityIndicator />
@@ -63,6 +69,7 @@ const styles = StyleSheet.create({
     },
     input: {
         marginBottom: 16,
+        fontFamily: 'Inter',
     },
     messageContainer: {
         alignItems: 'center',
@@ -70,9 +77,17 @@ const styles = StyleSheet.create({
     },
     textCenter: {
         textAlign: 'center',
+        fontFamily: 'Inter',
     },
     button: {
+        backgroundColor: '#007BFF',
+        padding: 10,
+        alignItems: 'center',
+        borderRadius: 5,
         minWidth: 140,
+    },
+    buttonDisabled: {
+        opacity: 0.6,
     },
 });
 

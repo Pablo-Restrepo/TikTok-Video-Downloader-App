@@ -5,7 +5,7 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
-  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link' | 'success' | 'error';
+  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link' | 'success' | 'error' | 'button';
 };
 
 export function ThemedText({
@@ -28,6 +28,7 @@ export function ThemedText({
         type === 'link' ? styles.link : undefined,
         type === 'success' ? styles.success : undefined,
         type === 'error' ? styles.error : undefined,
+        type === 'button' ? styles.button : undefined,
         style,
       ]}
       {...rest}
@@ -68,5 +69,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     color: 'red',
+  },
+  button: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: '#fff',
   },
 });
