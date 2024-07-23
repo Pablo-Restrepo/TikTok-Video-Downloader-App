@@ -9,6 +9,12 @@ const VideoDownloader: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [downloadSuccess, setDownloadSuccess] = useState<boolean | null>(null);
+    const [inputError, setInputError] = useState<string | null>(null);
+
+    const isValidTikTokUrl = (url: string): boolean => {
+        const regex = /^https:\/\/www\.tiktok\.com\/@[\w-]+\/video\/\d+$/;
+        return regex.test(url);
+    };
 
     const handleDownload = async () => {
         setLoading(true);
@@ -27,19 +33,33 @@ const VideoDownloader: React.FC = () => {
         }
     };
 
+    const handleUrlChange = (text: string) => {
+        setUrl(text);
+        if (text.trim() === '') {
+            setInputError('The input is empty.');
+        } else if (!isValidTikTokUrl(text)) {
+            setInputError('The link is not a valid TikTok URL.');
+        } else {
+            setInputError(null);
+        }
+    };
+
+    const isButtonDisabled = loading || url.trim() === '' || !isValidTikTokUrl(url);
+
     return (
         <View style={styles.container}>
             <ThemedInput
                 value={url}
                 editable={!loading}
-                onChangeText={setUrl}
+                onChangeText={handleUrlChange}
                 placeholder="Enter the TikTok video URL"
                 style={styles.input}
             />
+            {inputError && <ThemedText type="error" style={styles.errorText}>{inputError}</ThemedText>}
             <TouchableOpacity
-                style={[styles.button, loading && styles.buttonDisabled]}
+                style={[styles.button, isButtonDisabled && styles.buttonDisabled]}
                 onPress={handleDownload}
-                disabled={loading}
+                disabled={isButtonDisabled}
             >
                 <ThemedText type="button" style={styles.textCenter}>Download Video</ThemedText>
             </TouchableOpacity>
@@ -68,12 +88,18 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     input: {
-        marginBottom: 16,
+        marginBottom: 10,
+        fontFamily: 'Inter',
+    },
+    errorText: {
+        marginBottom: 10,
+        color: 'red',
+        textAlign: 'center',
         fontFamily: 'Inter',
     },
     messageContainer: {
         alignItems: 'center',
-        marginTop: 16,
+        marginTop: 10,
     },
     textCenter: {
         textAlign: 'center',
