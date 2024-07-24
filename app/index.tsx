@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, ActivityIndicator, StyleSheet } from 'react-native';
-import { downloadVideo } from '@/api/downloadtiktokvid';
+import { downloadVideo } from '@/api/downloadtiktokvideos';
 import { ExternalLink } from '@/components/ExternalLink';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedInput } from '@/components/ThemedInput';
