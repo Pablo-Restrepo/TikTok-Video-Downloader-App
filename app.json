@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TikTok Video Downloader",
-    "slug": "TikTok Video Downloader",
+    "slug": "TikTok-Video-Downloader",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -42,7 +42,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "88a4f4a0-b090-49a6-a78c-2f41803bdf12"
+        "projectId": "3b5ab31c-806f-4215-8e41-f86facc60377"
       }
     }
   }

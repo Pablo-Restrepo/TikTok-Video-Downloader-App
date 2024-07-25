@@ -87,7 +87,7 @@ const App = () => {
         </View>
       </View>
       <View style={styles.footerContainer}>
-        <ExternalLink href="https://github.com/Pablo-Restrepo/Download-TikTok-Videos-App">
+        <ExternalLink href="https://github.com/Pablo-Restrepo/TikTok-Video-Downloader-App">
           <ThemedText type="link" style={[styles.textCenter, styles.text]}>GitHub Repository</ThemedText>
         </ExternalLink>
       </View>
