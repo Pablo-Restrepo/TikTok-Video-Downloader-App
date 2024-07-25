@@ -14,7 +14,7 @@ const App = () => {
   const [inputError, setInputError] = useState<string | null>(null);
 
   const isValidTikTokUrl = (url: string): boolean => {
-    const regex = /^https:\/\/www\.tiktok\.com\/@[\w-]+\/video\/\d+$/;
+    const regex = /^(https:\/\/(?:www\.|vm\.)?tiktok\.com\/)/;
     return regex.test(url);
   };
 

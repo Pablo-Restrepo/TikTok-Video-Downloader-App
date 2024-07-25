@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
+import { Alert } from 'react-native';
 
 const API_BASE_URL = 'https://ssstik.io/abc?url=dl';
 
@@ -49,6 +50,13 @@ export const downloadVideo = async (url: string): Promise<boolean> => {
     }
 
     try {
+        const { status } = await MediaLibrary.requestPermissionsAsync();
+
+        if (status !== 'granted') {
+            Alert.alert('Permission required', 'Storage permission is required to download videos.');
+            return false;
+        }
+
         const fileUri = `${FileSystem.documentDirectory}video.mp4`;
         const { uri } = await FileSystem.downloadAsync(downloadLink, fileUri);
         await MediaLibrary.createAssetAsync(uri);
